@@ -13,14 +13,15 @@ namespace Framework
 
     struct Rect
     {
-        int x;
-        int y;
-        int w;
-        int h;
+        float x;
+        float y;
+        float w;
+        float h;
 
-        Rect(int x, int y, int w, int h);
+        Rect(float x, float y, float w, float h);
         Rect(const Point& pos, const Point& size);
 
+        /// Using static_cast<int>.
         [[nodiscard]] SDL_Rect ToSDL() const;
     };
 }

@@ -18,7 +18,7 @@ namespace DF
         void ProcessEvent(const Framework::Event& event, const Settings& settings);
 
         [[nodiscard]] const Framework::Point& GetPosition() const;
-        [[nodiscard]] int GetZoom() const;
+        [[nodiscard]] float GetZoom() const;
 
     private:
         Framework::Point position = Framework::Point(0, 0);

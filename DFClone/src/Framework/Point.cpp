@@ -2,7 +2,7 @@
 
 namespace Framework
 {
-    Point::Point(int x, int y)
+    Point::Point(float x, float y)
         : x(x), y(y)
     {
     }
@@ -33,7 +33,7 @@ namespace Framework
         return *this;
     }
 
-    Point& Point::operator*=(int factor)
+    Point& Point::operator*=(float factor)
     {
         this->x *= factor;
         this->y *= factor;
@@ -58,7 +58,7 @@ namespace Framework
         return a1 /= b;
     }
 
-    Point operator*(const Point& a, int f)
+    Point operator*(const Point& a, float f)
     {
         Point a1(a);
         return a1 *= f;

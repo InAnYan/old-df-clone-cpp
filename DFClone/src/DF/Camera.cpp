@@ -15,7 +15,7 @@ namespace DF
         {
             float dx = static_cast<float>(event.motion.xrel) * settings.GetMouseSensitivity();
             float dy = static_cast<float>(event.motion.yrel) * settings.GetMouseSensitivity();
-            position += {static_cast<int>(dx), static_cast<int>(dy)};
+            position += {dx, dy};
         }
         else if (event.type == SDL_MOUSEWHEEL)
         {
@@ -43,7 +43,7 @@ namespace DF
         return position;
     }
 
-    int Camera::GetZoom() const
+    float Camera::GetZoom() const
     {
         return zoom;
     }

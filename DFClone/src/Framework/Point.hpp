@@ -11,10 +11,10 @@ namespace Framework
 {
     struct Point
     {
-        int x;
-        int y;
+        float x;
+        float y;
 
-        Point(int x, int y);
+        Point(float x, float y);
 
         [[nodiscard]] Rect ToTileRect(const Point& tileSize) const;
 
@@ -22,14 +22,14 @@ namespace Framework
         Point& operator*=(const Point& other);
         Point& operator/=(const Point& other);
 
-        Point& operator*=(int factor);
+        Point& operator*=(float factor);
     };
 
     Point operator+(const Point& a, const Point& b);
     Point operator*(const Point& a, const Point& b);
     Point operator/(const Point& a, const Point& b);
 
-    Point operator*(const Point& a, int f);
+    Point operator*(const Point& a, float f);
 }
 
 #endif //POINT_HPP

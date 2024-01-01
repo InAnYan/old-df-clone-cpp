@@ -4,7 +4,7 @@
 
 namespace Framework
 {
-    Rect::Rect(int x, int y, int w, int h)
+    Rect::Rect(float x, float y, float w, float h)
         : x(x), y(y), w(w), h(h)
     {
     }
@@ -16,7 +16,6 @@ namespace Framework
 
     SDL_Rect Rect::ToSDL() const
     {
-        return { x, y, w, h };
+        return {static_cast<int>(x), static_cast<int>(y), static_cast<int>(w), static_cast<int>(h)};
     }
-
 }

@@ -82,6 +82,6 @@ namespace Framework
         int w;
         int h;
         SDL_GetWindowSize(sdlWindow, &w, &h);
-        return {w, h};
+        return {static_cast<float>(w), static_cast<float>(h)};
     }
 } // Framework

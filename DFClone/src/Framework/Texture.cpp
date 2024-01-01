@@ -13,7 +13,7 @@
 namespace Framework
 {
     Texture::Texture(SDL_Surface* impl)
-        : impl(impl), size{impl->w, impl->h}
+        : impl(impl), size{static_cast<float>(impl->w), static_cast<float>(impl->h)}
     {
         assert(impl != nullptr);
     }
