@@ -2,8 +2,12 @@ cmake_minimum_required(VERSION 3.22)
 
 set(CMAKE_CXX_STANDARD 17)
 
-find_package(SDL2 REQUIRED)
-include_directories(${SDL2_INCLUDE_DIRS})
+include(FindPkgConfig)
+
+pkg_search_module(SDL2 REQUIRED sdl2)
+pkg_search_module(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
+
+find_package(Boost 1.74 COMPONENTS  REQUIRED)
 
 add_executable(DFClone src/main.cpp
         src/DF/Tile.cpp
@@ -34,5 +38,16 @@ add_executable(DFClone src/main.cpp
         src/DF/Camera.cpp
         src/DF/Camera.hpp
         src/DF/ResourceManager.cpp
-        src/DF/ResourceManager.hpp)
-target_link_libraries(DFClone ${SDL2_LIBRARIES})
+        src/DF/ResourceManager.hpp
+        src/Framework/Point.hpp
+        src/DF/TileSet.cpp
+        src/DF/TileSet.hpp
+        src/Framework/PictureType.hpp
+        src/Framework/File.cpp
+        src/Framework/Rect.hpp
+        src/Framework/Rect.cpp
+        src/Framework/Point.cpp
+        src/DF/Settings.cpp
+        src/DF/Settings.hpp)
+target_include_directories(DFClone PRIVATE ${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIRS} ${Boost_INCLUDE_DIR})
+target_link_libraries(DFClone PRIVATE ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} ${Boost_LIBRARIES})

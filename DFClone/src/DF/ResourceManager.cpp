@@ -8,9 +8,18 @@
 
 namespace DF
 {
-    const TileInfo& ResourceManager::GetTileInfo(unsigned id) const
+    ResourceManager::ResourceManager(TileSet&& tileSet)
+        : tileSet(std::move(tileSet))
     {
-        assert(id < tiles.size());
-        return tiles[id];
+    }
+
+    ResourceManager ResourceManager::CreateFirstDebug()
+    {
+        return ResourceManager(TileSet::CreateFirstDebug());
+    }
+
+    const TileSet& ResourceManager::GetTileSet() const
+    {
+        return tileSet;
     }
 } // DF

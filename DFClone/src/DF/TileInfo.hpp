@@ -5,16 +5,14 @@
 #ifndef TILEINFO_HPP
 #define TILEINFO_HPP
 
-#include <memory>
-
-#include "../Framework/Texture.hpp"
+#include "../Framework/Point.hpp"
 
 namespace DF
 {
     struct TileInfo
     {
-        std::unique_ptr<Framework::Texture> texture;
-        bool                                movable;
+        Framework::Point coords;
+        bool             movable;
     };
 } // DF
 

@@ -20,11 +20,15 @@ namespace DF
     class World
     {
     public:
-        World(Map&& map, std::vector<std::unique_ptr<Object>>&& objects, std::vector<std::unique_ptr<Entity>>&& entities);
+        void Draw(Framework::Window& window, const Camera& camera, const ResourceManager& resourceManager,
+                  int           z) const;
 
-        void Draw(Framework::Window& window, const Camera& camera, const ResourceManager& resourceManager);
+        static World CreateFirstDebug();
 
     private:
+        World(Map&&                                  map, std::vector<std::unique_ptr<Object>>&& objects,
+              std::vector<std::unique_ptr<Entity>>&& entities);
+
         Map                                  map;
         std::vector<std::unique_ptr<Object>> objects;
         std::vector<std::unique_ptr<Entity>> entities;

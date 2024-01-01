@@ -5,20 +5,22 @@
 #ifndef RESOURCEMANAGER_HPP
 #define RESOURCEMANAGER_HPP
 
-#include <vector>
+#include "TileSet.hpp"
 
-#include "TileInfo.hpp"
+namespace DF
+{
+    class ResourceManager
+    {
+    public:
+        static ResourceManager CreateFirstDebug();
 
-namespace DF {
-    class ResourceManager {
-public:
-        explicit ResourceManager(std::vector<TileInfo>&& tiles);
-        [[nodiscard]] const TileInfo& GetTileInfo(unsigned id) const;
+        [[nodiscard]] const TileSet& GetTileSet() const;
 
     private:
-        std::vector<TileInfo> tiles;
-};
+        explicit ResourceManager(TileSet&& tileSet);
 
+        TileSet tileSet;
+    };
 } // DF
 
 #endif //RESOURCEMANAGER_HPP

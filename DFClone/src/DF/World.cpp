@@ -12,18 +12,23 @@ namespace DF
     {
     }
 
-    void World::Draw(Framework::Window& window, const Camera& camera, const ResourceManager& resourceManager)
+    void World::Draw(Framework::Window& window, const Camera& camera, const ResourceManager& resourceManager, int z) const
     {
-        map.Draw(window, camera, resourceManager);
+        map.Draw(window, camera, resourceManager, z);
 
-        for (auto entity : entities)
+        for (auto& entity : entities)
         {
             entity->Draw(window, camera, resourceManager);
         }
 
-        for (auto object : objects)
+        for (auto& object : objects)
         {
             object->Draw(window, camera, resourceManager);
         }
+    }
+
+    World World::CreateFirstDebug()
+    {
+        return {Map::CreateFirstDebug(), {}, {}};
     }
 } // DF

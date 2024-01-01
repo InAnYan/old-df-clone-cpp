@@ -12,6 +12,7 @@ namespace DF
     class Tile
     {
     public:
+        Tile();
         explicit Tile(uint8_t id);
 
         [[nodiscard]] uint8_t GetId() const;

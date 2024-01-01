@@ -13,21 +13,24 @@
 
 namespace DF
 {
-    class Game : public Framework::Screen
+    class Game final : public Framework::Screen
     {
     public:
-        Game(ResourceManager&& tileManager, World&& world);
-
         void ProcessEvent(const Framework::Event& event) override;
         void Update() override;
-        void Draw(Framework::Window& window) override;
+        void Draw(Framework::Window& window) const override;
 
-        static std::unique_ptr<Game> CreateFirtsDebugGame();
+        static std::unique_ptr<Game> CreateFirstDebug();
 
     private:
+        Game(Settings&& settings, ResourceManager&& resourceManager, World&& world, int z);
+
+        Settings        settings;
         ResourceManager resourceManager;
-        World       world;
-        Camera      camera;
+        World           world;
+        Camera          camera;
+
+        int z;
     };
 } // DF
 

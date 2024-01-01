@@ -23,21 +23,17 @@ namespace Framework
         sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, SDL_RENDERER_ACCELERATED);
         if (sdlRenderer == nullptr)
         {
+            SDL_DestroyWindow(sdlWindow);
             throw Error("could not create the renderer", SDL_GetError());
         }
+
+        screenSurface = SDL_GetWindowSurface(sdlWindow);
     }
 
     Window::~Window()
     {
-        if (sdlWindow)
-        {
-            SDL_DestroyWindow(sdlWindow);
-        }
-
-        if (sdlRenderer)
-        {
-            SDL_DestroyRenderer(sdlRenderer);
-        }
+        SDL_DestroyWindow(sdlWindow);
+        SDL_DestroyRenderer(sdlRenderer);
     }
 
     void Window::SetScreen(std::unique_ptr<Screen> newScreen)
@@ -66,7 +62,26 @@ namespace Framework
             }
 
             currentScreen->Update();
+
+            SDL_FillRect(screenSurface, nullptr, 0);
             currentScreen->Draw(*this);
+            SDL_UpdateWindowSurface(sdlWindow);
         }
+    }
+
+    void Window::DrawTexture(const Texture& src, const Rect& srcRect, const Rect& dstRect)
+    {
+        const SDL_Rect sdlRectSrc = srcRect.ToSDL();
+        SDL_Rect       sdlRectDst = dstRect.ToSDL();
+        // TODO: SDL and const correctness.
+        SDL_BlitScaled(const_cast<SDL_Surface *>(src.GetImpl()), &sdlRectSrc, screenSurface, &sdlRectDst);
+    }
+
+    Point Window::GetSize() const
+    {
+        int w;
+        int h;
+        SDL_GetWindowSize(sdlWindow, &w, &h);
+        return {w, h};
     }
 } // Framework

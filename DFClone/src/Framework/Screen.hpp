@@ -18,7 +18,7 @@ namespace Framework
 
         virtual void ProcessEvent(const Event& event) = 0;
         virtual void Update() = 0;
-        virtual void Draw(Window& window) = 0;
+        virtual void Draw(Window& window) const = 0;
     };
 } // Framework
 

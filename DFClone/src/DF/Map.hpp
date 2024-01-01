@@ -7,18 +7,33 @@
 
 #include <vector>
 
+#include <boost/multi_array.hpp>
+
+#include "../Framework/Window.hpp"
+
 #include "Tile.hpp"
+#include "ResourceManager.hpp"
+#include "Camera.hpp"
 
 namespace DF
 {
     class Map
     {
     public:
-        using Impl = std::vector<std::vector<std::vector<Tile>>>;
+        using Impl = boost::multi_array<Tile, 3>;
 
-        explicit Map(Impl&& tiles);
+        void Draw(Framework::Window& window, const Camera& camera, const ResourceManager& resourceManager,
+                  int           z) const;
+
+        static Map CreateFirstDebug();
+
+        [[nodiscard]] bool IsPointInWorld(const Framework::Point& point, int z) const;
+
+        [[nodiscard]] const Tile& GetTile(const Framework::Point& point, int z) const;
 
     private:
+        explicit Map(Impl&& tiles);
+
         Impl tiles;
     };
 } // DF

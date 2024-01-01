@@ -6,6 +6,11 @@
 
 namespace DF
 {
+    Tile::Tile()
+        : id(0)
+    {
+    }
+
     Tile::Tile(uint8_t id)
         : id(id)
     {
