@@ -5,13 +5,14 @@
 #ifndef TILEINFO_HPP
 #define TILEINFO_HPP
 
-#include "../Framework/Point.hpp"
+#include <string_view>
 
 namespace DF
 {
     struct TileInfo
     {
-        Framework::Point coords;
+        std::string_view name;
+        bool             constructible;
         bool             movable;
     };
 } // DF

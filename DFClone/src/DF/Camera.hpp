@@ -17,11 +17,11 @@ namespace DF
 
         void ProcessEvent(const Framework::Event& event, const Settings& settings);
 
-        [[nodiscard]] const Framework::Point& GetPosition() const;
+        [[nodiscard]] const Framework::Point<int>& GetPosition() const;
         [[nodiscard]] float GetZoom() const;
 
     private:
-        Framework::Point position = Framework::Point(0, 0);
+        Framework::Point<int> position = Framework::Point(0, 0);
         float            zoom = 1;
 
         // TODO: Possible source of bugs.

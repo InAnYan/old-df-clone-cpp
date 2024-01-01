@@ -18,7 +18,7 @@ namespace Framework
         explicit Texture(SDL_Surface* impl);
         ~Texture();
 
-        [[nodiscard]] const Point& GetSize() const;
+        [[nodiscard]] const Point<int>& GetSize() const;
 
         /// The image should be in png.
         static std::unique_ptr<Texture> FromFile(const std::string& path);
@@ -27,7 +27,7 @@ namespace Framework
 
     private:
         SDL_Surface* impl;
-        Point size;
+        Point<int> size;
     };
 }
 

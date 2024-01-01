@@ -25,9 +25,9 @@ namespace Framework
 
         void MainLoop();
 
-        void DrawTexture(const Texture& src, const Rect& srcRect, const Rect& dstRect);
+        void DrawTexture(const Texture& src, const Rect<int>& srcRect, const Rect<int>& dstRect);
 
-        [[nodiscard]] Point GetSize() const;
+        [[nodiscard]] Point<int> GetSize() const;
 
     private:
         const WindowConfiguration conf;

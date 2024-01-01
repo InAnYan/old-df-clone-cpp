@@ -27,9 +27,9 @@ namespace DF
 
         static Map CreateFirstDebug();
 
-        [[nodiscard]] bool IsPointInWorld(const Framework::Point& point, int z) const;
+        [[nodiscard]] bool IsPointInWorld(const Framework::Point<int>& point, int z) const;
 
-        [[nodiscard]] const Tile& GetTile(const Framework::Point& point, int z) const;
+        [[nodiscard]] const Tile& GetTile(const Framework::Point<int>& point, int z) const;
 
     private:
         explicit Map(Impl&& tiles);

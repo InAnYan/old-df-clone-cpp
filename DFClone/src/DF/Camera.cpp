@@ -13,13 +13,13 @@ namespace DF
 
         if (event.type == SDL_MOUSEMOTION && rightButtonPressed)
         {
-            float dx = static_cast<float>(event.motion.xrel) * settings.GetMouseSensitivity();
-            float dy = static_cast<float>(event.motion.yrel) * settings.GetMouseSensitivity();
+            int dx = event.motion.xrel * settings.GetMouseSensitivity();
+            int dy = event.motion.yrel * settings.GetMouseSensitivity();
             position += {dx, dy};
         }
         else if (event.type == SDL_MOUSEWHEEL)
         {
-            zoom += static_cast<float>(event.wheel.y) * settings.GetZoomFactor();
+            zoom += event.wheel.y * settings.GetZoomFactor();
             zoom = settings.ClampCameraZoom(zoom);
         }
         else if (event.type == SDL_MOUSEBUTTONUP)
@@ -38,7 +38,7 @@ namespace DF
         }
     }
 
-    const Framework::Point& Camera::GetPosition() const
+    const Framework::Point<int>& Camera::GetPosition() const
     {
         return position;
     }

@@ -13,7 +13,7 @@
 namespace Framework
 {
     Texture::Texture(SDL_Surface* impl)
-        : impl(impl), size{static_cast<float>(impl->w), static_cast<float>(impl->h)}
+        : impl(impl), size{impl->w, impl->h}
     {
         assert(impl != nullptr);
     }
@@ -23,7 +23,7 @@ namespace Framework
         SDL_FreeSurface(impl);
     }
 
-    const Point& Texture::GetSize() const
+    const Point<int>& Texture::GetSize() const
     {
         return size;
     }

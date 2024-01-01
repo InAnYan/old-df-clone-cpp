@@ -17,9 +17,9 @@ namespace DF
                    int                z) const
     {
         const TileSet&          tileSet      = resourceManager.GetTileSet();
-        const Framework::Point  tileSize     = tileSet.GetTileSize() * camera.GetZoom();
-        const Framework::Point& visibleTiles = window.GetSize() / tileSize;
-        const Framework::Point  startPoint   = camera.GetPosition() / tileSize;
+        const Framework::Point<int>  tileSize     = tileSet.GetTileSize() * camera.GetZoom();
+        const Framework::Point<int>& visibleTiles = window.GetSize() / tileSize;
+        const Framework::Point<int>  startPoint   = camera.GetPosition() / tileSize;
 
         for (int y = 0; y < visibleTiles.y + 1; ++y)
         {
@@ -53,7 +53,7 @@ namespace DF
         return Map(std::move(array));
     }
 
-    bool Map::IsPointInWorld(const Framework::Point& point, int z) const
+    bool Map::IsPointInWorld(const Framework::Point<int>& point, int z) const
     {
         if (z >= tiles.size() || z < 0)
         {
@@ -72,7 +72,7 @@ namespace DF
         return point.x < row.size() && point.x >= 0;
     }
 
-    const Tile& Map::GetTile(const Framework::Point& point, int z) const
+    const Tile& Map::GetTile(const Framework::Point<int>& point, int z) const
     {
         assert(z >= 0 && z < tiles.size());
         assert(point.y >= 0 && point.y < tiles[z].size());

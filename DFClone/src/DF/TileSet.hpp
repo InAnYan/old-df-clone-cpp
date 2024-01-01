@@ -21,18 +21,20 @@ namespace DF
     public:
         static TileSet CreateFirstDebug();
 
-        void DrawTile(Framework::Window& window, uint8_t id, const Framework::Rect& dstRect) const;
+        [[nodiscard]] Framework::Point<int> IdToCoord(uint8_t id) const;
 
-        [[nodiscard]] const Framework::Point& GetTileSize() const;
+        void DrawTile(Framework::Window& window, uint8_t id, const Framework::Rect<int>& dstRect) const;
+
+        [[nodiscard]] const Framework::Point<int>& GetTileSize() const;
 
     private:
-        TileSet(std::unique_ptr<Framework::Texture>&& tilesTexture, Framework::Point tilesCount,
-                std::vector<TileInfo>&&               tiles);
+        TileSet(std::unique_ptr<Framework::Texture>&& tilesTexture, Framework::Point<int> tilesCount,
+                std::vector<TileInfo>&&               tilesInfo);
 
         std::unique_ptr<Framework::Texture> tilesTexture;
-        const Framework::Point              tilesCount;
-        Framework::Point                    tileSize;
-        std::vector<TileInfo>               tiles;
+        const Framework::Point<int>         tilesCount;
+        const Framework::Point<int>         tileSize;
+        std::vector<TileInfo>               tilesInfo;
     };
 } // DF
 

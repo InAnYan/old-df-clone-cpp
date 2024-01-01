@@ -69,7 +69,7 @@ namespace Framework
         }
     }
 
-    void Window::DrawTexture(const Texture& src, const Rect& srcRect, const Rect& dstRect)
+    void Window::DrawTexture(const Texture& src, const Rect<int>& srcRect, const Rect<int>& dstRect)
     {
         const SDL_Rect sdlRectSrc = srcRect.ToSDL();
         SDL_Rect       sdlRectDst = dstRect.ToSDL();
@@ -77,11 +77,10 @@ namespace Framework
         SDL_BlitScaled(const_cast<SDL_Surface *>(src.GetImpl()), &sdlRectSrc, screenSurface, &sdlRectDst);
     }
 
-    Point Window::GetSize() const
+    Point<int> Window::GetSize() const
     {
-        int w;
-        int h;
-        SDL_GetWindowSize(sdlWindow, &w, &h);
-        return {static_cast<float>(w), static_cast<float>(h)};
+        Point<int> res;
+        SDL_GetWindowSize(sdlWindow, &res.x, &res.y);
+        return res;
     }
 } // Framework

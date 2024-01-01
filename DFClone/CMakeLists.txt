@@ -45,8 +45,6 @@ add_executable(DFClone src/main.cpp
         src/Framework/PictureType.hpp
         src/Framework/File.cpp
         src/Framework/Rect.hpp
-        src/Framework/Rect.cpp
-        src/Framework/Point.cpp
         src/DF/Settings.cpp
         src/DF/Settings.hpp)
 target_include_directories(DFClone PRIVATE ${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIRS} ${Boost_INCLUDE_DIR})
